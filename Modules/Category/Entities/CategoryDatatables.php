@@ -20,6 +20,19 @@
 
       return $this->eloquent(Category::query())
         ->addIndexColumn()
+        ->addColumn('action', function($item) {
+          return view('ladmin::table.action', [
+            'show' => null,
+            'edit' => [
+              'gate' => 'administrator.master-data.category.update',
+              'url' => route('administrator.master-data.category.edit', [$item->id, 'back' => request()->fullUrl()])
+            ],
+            'destroy' => [
+              'gate' => 'administrator.master-data.category.destroy',
+              'url' => route('administrator.master-data.category.destroy', [$item->id, 'back' => request()->fullUrl()]),
+            ]
+          ]);
+        })
         ->escapeColumns([])
         ->make(true);
     }
@@ -40,7 +53,8 @@
         'fields' => [ 
           __('No'),
           __('ID'),
-          __('Title') 
+          __('Title'),
+          __('Action') 
         ], // Table header
         'foos' => [ // Custom data array. You can call in your blade with variable $foos
           'bar' => 'baz',
@@ -57,6 +71,7 @@
               ['data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'orderable' => false],
               ['data' => 'id', 'class' => 'text-center'],
               ['data' => 'category_title'],
+              ['data' => 'action', 'class' => 'text-center', 'orderable' => false],
           ]
         ]
       ];

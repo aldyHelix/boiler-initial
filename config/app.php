@@ -177,6 +177,11 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
 
+        /**
+         * Helpers
+         */
+        browner12\helpers\HelperServiceProvider::class,
+
     ],
 
     /*

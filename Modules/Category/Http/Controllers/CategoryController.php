@@ -5,20 +5,29 @@ namespace Modules\Category\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Category\Entities\Category;
+use Modules\Category\Repositories\CategoryRepository;
 use Modules\Category\Entities\CategoryDatatables;
+use GuzzleHttp\Psr7\UploadedFile;
+use Modules\Category\Entities\Category;
 
 class CategoryController extends Controller
 {
+
+    protected $repository;
+
+    public function __construct(CategoryRepository $repository) {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
-        $data['category'] = Category::all();
-        //return view('category::index', $data);
-        return CategoryDataTables::view('category::index', $data);
+        ladmin()->allow('administrator.master-data.category.index');
+
+        return CategoryDataTables::view('category::index');
     }
 
     /**
@@ -27,7 +36,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category::create');
+        $data['category'] = new Category();
+        ladmin()->allow('administrator.master-data.category.create');
+
+        return view('category::create', $data);
     }
 
     /**
@@ -37,7 +49,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $this->repository->createCategory($request);
+            session()->flash('success', [
+                'Category has been created sucessfully'
+            ]);
+            return redirect()->back();
+        } catch (LadminException $e) {
+            return redirect()->back()->withErrors([
+                $e->getMessage()
+            ]);
+        }
     }
 
     /**
