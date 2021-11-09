@@ -23,14 +23,19 @@ class CategoryRepository extends Repository implements MasterRepositoryInterface
    * @return Void
    */
   public function updateCategory(Request $request, $id) {
-	  return [$request, $id];
+    $category = $this->categoryService->updateCategory($request);
+
+    $get_category = $this->model->findOrFail($id);
+    $get_category->update($category);
   }
 
   public function createCategory(Request $request) {
-
     $category = $this->categoryService->insertCategory($request);
 
     $this->model->create($category);
   }
 
+  public function getCategoryById($id){
+      return $this->model->findOrFail($id);
+  }
 }

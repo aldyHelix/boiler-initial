@@ -1,4 +1,7 @@
 <x-ladmin-layout>
+    <x-slot name="styles">
+        <link rel="stylesheet" href="{{ mix('css/custom.css') }}">
+    </x-slot>
     <x-slot name="title">Category</x-slot>
     <x-slot name="buttons">
       @can('administrator.master-data.category.create')

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
   namespace Modules\Category\Entities;
 
@@ -41,7 +41,7 @@
      * Datatables Option
      */
     public function options() {
-      
+
       /**
        * Data from controller
        */
@@ -50,11 +50,11 @@
       return [
         'title' => 'List Of Category',
         'buttons' => null, // e.g : view('user.actions.create')
-        'fields' => [ 
+        'fields' => [
           __('No'),
           __('ID'),
           __('Title'),
-          __('Action') 
+          __('Action')
         ], // Table header
         'foos' => [ // Custom data array. You can call in your blade with variable $foos
           'bar' => 'baz',
@@ -68,10 +68,10 @@
           'serverSide' => true,
           'ajax' => request()->fullurl(),
           'columns' => [
-              ['data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'orderable' => false],
-              ['data' => 'id', 'class' => 'text-center'],
+              ['data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'orderable' => false, 'class' => 'datatables-number'],
+              ['data' => 'id', 'class' => 'text-center datatables-id'],
               ['data' => 'category_title'],
-              ['data' => 'action', 'class' => 'text-center', 'orderable' => false],
+              ['data' => 'action', 'class' => 'text-center datatables-action', 'orderable' => false],
           ]
         ]
       ];

@@ -18,4 +18,5 @@ use Illuminate\Support\Facades\Route;
         Route::get('/edit/{id}', 'CategoryController@edit')->name('administrator.master-data.category.edit');
         Route::get('/destroy/{id}', 'CategoryController@destroy')->name('administrator.master-data.category.destroy');
         Route::post('/store', 'CategoryController@store')->name('administrator.master-data.category.store');
+        Route::put('/update/{id}', 'CategoryController@update')->name('administrator.master-data.category.update');
     });

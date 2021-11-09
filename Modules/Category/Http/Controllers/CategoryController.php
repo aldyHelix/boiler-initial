@@ -36,8 +36,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $data['category'] = new Category();
         ladmin()->allow('administrator.master-data.category.create');
+        $data['category'] = new Category();
 
         return view('category::create', $data);
     }
@@ -79,7 +79,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('category::edit');
+        ladmin()->allow('administrator.master-data.category.update');
+        $data['category'] = $this->repository->getCategoryById($id);
+        return view('category::edit', $data);
     }
 
     /**
@@ -90,7 +92,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $this->repository->updateCategory($request, $id);
+            session()->flash('success', [
+                'Category has been updated sucessfully'
+            ]);
+            return redirect()->back();
+        } catch (LadminException $e) {
+            return redirect()->back()->withErrors([
+                $e->getMessage()
+            ]);
+        }
     }
 
     /**

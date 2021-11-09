@@ -9,7 +9,7 @@ return [
     'isActive' => null,
     /**
      * You can use fontawesome or svg file, the svg file is viewable in the resources/assets/icons directory
-     * Example to Custom SVG file 'icon' => 'somefolder.customsvgfile' --> resources/assets/icons/somefolder/customsvgfile.svg 
+     * Example to Custom SVG file 'icon' => 'somefolder.customsvgfile' --> resources/assets/icons/somefolder/customsvgfile.svg
      * Exampe for fontawesome 'icon' => 'fas fa-user',
      */
     'icon' => 'user-group',
@@ -23,7 +23,7 @@ return [
         'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
         /**
          * Declaration route Example
-         * ['administrator.account.admin.show', ['uuid-uuid-uuid', 'foo' => 'bar']] 
+         * ['administrator.account.admin.show', ['uuid-uuid-uuid', 'foo' => 'bar']]
          * --> https://domain.com/administrator/account/admin/uuid-uuid-uuid?foo=bar
          */
         'route' => ['administrator.account.admin.index', []],
@@ -146,7 +146,7 @@ return [
             'title' => 'Assign Permission',
             'description' => 'User can assign for all permission'
           ],
-          
+
         ],
       ]
     ]

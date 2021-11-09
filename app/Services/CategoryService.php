@@ -21,4 +21,25 @@ class CategoryService {
 
         return $category;
 	}
+
+    public function updateCategory($request){
+        $data = $request->all();
+        $path = 'images/category';
+
+        if(isset($data['image'])) {
+            $do_upload = imageUpload($data['image'], $path, 'public');
+
+            if(!$do_upload){
+                abort(500, 'Failed upload image');
+            } else {
+                $data['category_image'] = $do_upload;
+            }
+
+            unset($data['image']);
+        }
+
+        foreach ($data as $key => $value) { $category[$key] = $value; }
+
+        return $category;
+    }
 }
