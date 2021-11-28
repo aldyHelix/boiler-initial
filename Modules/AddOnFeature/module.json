@@ -1,0 +1,13 @@
+{
+    "name": "AddOnFeature",
+    "alias": "addonfeature",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AddOnFeature\\Providers\\AddOnFeatureServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
