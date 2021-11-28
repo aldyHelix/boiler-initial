@@ -88,6 +88,32 @@ return [
           ]
         ],
       ],
+      [
+        'gate' => 'administrator.master-data.add-on-feature.index',
+        'name' => 'Add On Feature',
+        'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
+        'route' => ['administrator.master-data.add-on-feature.index', []],
+        'isActive' => 'master-data/add-on-feature*',
+        'icon' => 'folder',
+        'id' => '',
+        'gates' => [
+          [
+            'gate' => 'administrator.master-data.add-on-feature.create',
+            'title' => 'Create Category',
+            'description' => 'User can create new add-on-feature'
+          ],
+          [
+            'gate' => 'administrator.master-data.add-on-feature.update',
+            'title' => 'Update Category',
+            'description' => 'User can update add-on-feature'
+          ],
+          [
+            'gate' => 'administrator.master-data.add-on-feature.destroy',
+            'title' => 'Delete Category',
+            'description' => 'User can delete add-on-feature'
+          ]
+        ],
+      ],
     ]
   ],
 
