@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Category\Repositories\CategoryRepository;
 use Modules\Category\Entities\CategoryDatatables;
 use GuzzleHttp\Psr7\UploadedFile;
+use Hexters\Ladmin\Exceptions\LadminException;
 use Modules\Category\Entities\Category;
 
 class CategoryController extends Controller
@@ -112,6 +113,19 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $deleted = $this->repository->deleteCategory($id);
+
+            if($deleted) {
+                session()->flash('success', [
+                    'Category has been deleted sucessfully'
+                ]);
+                return redirect()->back();
+            }
+        } catch (LadminException $e) {
+            return redirect()->back()->withErrors([
+                $e->getMessage()
+            ]);
+        }
     }
 }

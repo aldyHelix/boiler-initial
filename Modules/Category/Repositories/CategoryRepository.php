@@ -38,4 +38,8 @@ class CategoryRepository extends Repository implements MasterRepositoryInterface
   public function getCategoryById($id){
       return $this->model->findOrFail($id);
   }
+
+  public function deleteCategory($id){
+      return $this->getCategoryById($id)->delete();
+  }
 }
