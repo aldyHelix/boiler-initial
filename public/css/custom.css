@@ -1,0 +1,103 @@
+.datatables-number {
+    width: 1px !important;
+}
+
+.datatables-id {
+    width: 1px !important;
+}
+
+.datatables-action {
+    width: 150px;
+    min-width: 150px !important;
+    max-width: 120px !important;
+}
+
+table.dataTable {
+    border: 2px solid #f8f8f8;
+}
+
+table.dataTable th,
+table.dataTable td {
+    border-bottom: 1px solid #f8f8f8;
+    border-top: 0;
+}
+
+table.dataTable thead th,
+table.dataTable thead td,
+table.dataTable tfoot th,
+table.dataTable tfoot td {
+    font-size: 0.85rem;
+    border: 0;
+}
+
+table.dataTable thead tr {
+    background-color: #f8f8f8;
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc {
+    padding-right: inherit;
+}
+
+table.dataTable.table-striped tbody tr:nth-of-type(even) {
+    background-color: #f8f8f8;
+}
+
+table.dataTable.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #fff;
+}
+
+table.dataTable.complex-headers {
+    border: 1px solid #dae1e7;
+}
+
+table.dataTable.complex-headers thead th,
+table.dataTable.complex-headers thead td,
+table.dataTable.complex-headers tfoot th,
+table.dataTable.complex-headers tfoot td {
+    border-bottom: 1px solid #dae1e7;
+    border-right: 1px solid #dae1e7;
+}
+
+table.dataTable tbody tr.selected {
+    background-color: rgba(115, 103, 240, 0.05) !important;
+    color: #7367f0 !important;
+    box-shadow: 0 0 1px 0 #7367f0 !important;
+    border-radius: 5px;
+}
+
+table.dataTable tbody tr.selected td,
+table.dataTable tbody tr.selected th {
+    border-bottom: 0;
+}
+
+div.dataTables_wrapper div.dataTables_filter label,
+div.dataTables_wrapper div.dataTables_length label {
+    margin-top: 1rem;
+}
+
+div.dataTables_wrapper div.dataTables_filter select,
+div.dataTables_wrapper div.dataTables_length select {
+    background-position: calc(100% - 3px) 5px, calc(100% - 20px) 13px, 100% 0;
+    padding: 0 0.8rem;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    margin-top: 1rem;
+    padding-bottom: 7px;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination li a {
+    font-size: 0.8rem;
+}
+
+tr.group {
+    background-color: #ededed;
+}
+
+@media only screen and (max-width: 768px) {
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+        justify-content: center;
+    }
+}

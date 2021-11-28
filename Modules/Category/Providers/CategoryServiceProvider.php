@@ -4,6 +4,8 @@ namespace Modules\Category\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Hexters\Ladmin\Contracts\MasterRepositoryInterface;
+use Modules\Category\Repositories\CategoryRepository;
 
 class CategoryServiceProvider extends ServiceProvider
 {
@@ -28,6 +30,7 @@ class CategoryServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        $this->registerRepository();
     }
 
     /**
@@ -38,6 +41,13 @@ class CategoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+    }
+
+    public function registerRepository()
+    {
+        $this->app->bind(
+            MasterRepositoryInterface::class, 
+            CategoryRepository::class);
     }
 
     /**

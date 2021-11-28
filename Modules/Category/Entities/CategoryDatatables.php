@@ -1,4 +1,4 @@
-<?php 
+<?php
 
   namespace Modules\Category\Entities;
 
@@ -20,6 +20,19 @@
 
       return $this->eloquent(Category::query())
         ->addIndexColumn()
+        ->addColumn('action', function($item) {
+          return view('ladmin::table.action', [
+            'show' => null,
+            'edit' => [
+              'gate' => 'administrator.master-data.category.update',
+              'url' => route('administrator.master-data.category.edit', [$item->id, 'back' => request()->fullUrl()])
+            ],
+            'destroy' => [
+              'gate' => 'administrator.master-data.category.destroy',
+              'url' => route('administrator.master-data.category.destroy', [$item->id, 'back' => request()->fullUrl()]),
+            ]
+          ]);
+        })
         ->escapeColumns([])
         ->make(true);
     }
@@ -28,7 +41,7 @@
      * Datatables Option
      */
     public function options() {
-      
+
       /**
        * Data from controller
        */
@@ -37,10 +50,11 @@
       return [
         'title' => 'List Of Category',
         'buttons' => null, // e.g : view('user.actions.create')
-        'fields' => [ 
+        'fields' => [
           __('No'),
           __('ID'),
-          __('Title') 
+          __('Title'),
+          __('Action')
         ], // Table header
         'foos' => [ // Custom data array. You can call in your blade with variable $foos
           'bar' => 'baz',
@@ -54,9 +68,10 @@
           'serverSide' => true,
           'ajax' => request()->fullurl(),
           'columns' => [
-              ['data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'orderable' => false],
-              ['data' => 'id', 'class' => 'text-center'],
+              ['data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'orderable' => false, 'class' => 'datatables-number'],
+              ['data' => 'id', 'class' => 'text-center datatables-id'],
               ['data' => 'category_title'],
+              ['data' => 'action', 'class' => 'text-center datatables-action', 'orderable' => false],
           ]
         ]
       ];
